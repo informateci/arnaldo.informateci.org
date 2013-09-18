@@ -5,24 +5,114 @@
         </script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#robba').height(window.innerHeight);
-                $('#robba').css('line-height', window.innerHeight + 'px');
+                $('#container').height(window.innerHeight);
+                $('#divproverbio').height(window.innerHeight);
                 $(window).resize(function () {
-                    $('#robba').height(window.innerHeight);
-                    $('#robba').css('line-height', window.innerHeight + 'px');
+                    $('#container').height(window.innerHeight);
+                    $('#divproverbio').height(window.innerHeight);
                 });
                 /* var clip = new ZeroClipboard($('#copy'), {
                     moviePath: '/arnaldo/ZeroClipboard.swf'
                 }); */
             });
         </script>
+        <style type="text/css">
+            @font-face {
+                font-family: northumbria;
+                src: url('DK Northumbria.otf');
+            }
+
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+
+            #container {
+                background: #beccd1;
+                text-align: center;
+                margin: auto;
+                font-size: 50px;
+                font-family: northumbria;
+            }
+
+            #divproverbio {
+                display: table;
+                width: 100%;
+            }
+
+            #pproverbio {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                margin-left: 70px;
+                margin-right: 70px;
+            }
+
+            #newproverbio {
+                margin-top: -90px;
+            }
+
+
+            #newproverbio a:visited,
+            #newproverbio a {
+                font-family: sans-serif;
+                font-size: 17px;
+                padding: 10px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                border: 1px solid #6666cc;
+                color: #000;
+                text-decoration: none;
+            }
+
+            #newproverbio a:visited,
+            #newproverbio a {
+                background: rgb(132, 191, 213);
+            }
+
+            #newproverbio a:hover {
+                background: rgb(152, 211, 233);
+            }
+
+            #facebook-share {
+                position: absolute;
+                top: 50px;
+                right: 125px;
+            }
+
+            #twitter-share {
+                position: absolute;
+                top: 50px;
+                right: 70px;
+            }
+        </style>
     </head>
-    <body style="margin: 0; padding: 0">
-        <div id="robba" style="background: #beccd1; text-align: center; margin: auto; vertical-align: middle; font-size: 60px; cursor: default">
-            {{proverbio}}
+    <body>
+        <div id="container">
+            <div id="divproverbio">
+                <p id="pproverbio">{{proverbio}}</p>
+            </div>
+            
+            <div id="newproverbio">
+                <a href="/proverbia">Nuovo proverbio</a><a style="margin-left: 50px" href="/proverbia?id={{id}}">Permalink</a>
+            </div>
             <!--button id="copy" style="border: 1px solid #25649F; position:absolute; display: inline; font-size: 20px; height: 30px; line-height: 30px; vertical-align: middle; top: 70px; left: 70px; cursor: pointer" data-clipboard-text="{{proverbio}}">Copy</button-->
-            <a style="position: absolute; top: 50px; left: 70px;" href="http://www.facebook.com/sharer.php?u=http://arnaldo.informateci.org/proverbia%3fp%3d{{proverbio}}&t=Proverbia" target="blank"><img src="/facebook_s.png" height="50" /></a>
-            <a style="position: absolute; top: 50px; left: 125px;" href="https://twitter.com/intent/tweet?text={{urlprov}}&url=http://arnaldo.informateci.org/proverbia" class="twitter-share-button"><img src="/twitter_s.png" height="50" /></a>
+            <a href="#" id="facebook-share" onclick="
+                window.open(
+                    'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=' + encodeURIComponent('http://arnaldo.informateci.org/proverbia?id={{id}}')
+                    + '&p[title]=Arnaldo&p[summary]=' + encodeURIComponent('{{proverbio}}'), 
+                    'facebook-share-dialog', 
+                    'width=626,height=436'); 
+                    return false;">
+                <img src="/facebook_s.png" height="50" />
+            </a>
+            <a id="twitter-share" href="https://twitter.com/intent/tweet?text={{urlprov}}&url=http://arnaldo.informateci.org/proverbia?id={{id}}">
+                <img src="/twitter_s.png" height="50" />
+            </a>
+            <!--p style="position:absolute; bottom: 50px; right: 70px; font-size: 15px; display: inline; line-height: 20px; font-family: sans-serif">
+                {{users}} visitor(s) in the last 10 minutes
+            </p-->
         </div>
     </body>
 </html>
