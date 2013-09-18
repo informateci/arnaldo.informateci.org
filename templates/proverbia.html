@@ -1,0 +1,28 @@
+<html style="margin: 0; padding: 0">
+    <head>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="/ZeroClipboard.js">
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#robba').height(window.innerHeight);
+                $('#robba').css('line-height', window.innerHeight + 'px');
+                $(window).resize(function () {
+                    $('#robba').height(window.innerHeight);
+                    $('#robba').css('line-height', window.innerHeight + 'px');
+                });
+                /* var clip = new ZeroClipboard($('#copy'), {
+                    moviePath: '/arnaldo/ZeroClipboard.swf'
+                }); */
+            });
+        </script>
+    </head>
+    <body style="margin: 0; padding: 0">
+        <div id="robba" style="background: #beccd1; text-align: center; margin: auto; vertical-align: middle; font-size: 60px; cursor: default">
+            {{proverbio}}
+            <!--button id="copy" style="border: 1px solid #25649F; position:absolute; display: inline; font-size: 20px; height: 30px; line-height: 30px; vertical-align: middle; top: 70px; left: 70px; cursor: pointer" data-clipboard-text="{{proverbio}}">Copy</button-->
+            <a style="position: absolute; top: 50px; left: 70px;" href="http://www.facebook.com/sharer.php?u=http://arnaldo.informateci.org/proverbia%3fp%3d{{proverbio}}&t=Proverbia" target="blank"><img src="/facebook_s.png" height="50" /></a>
+            <a style="position: absolute; top: 50px; left: 125px;" href="https://twitter.com/intent/tweet?text={{urlprov}}&url=http://arnaldo.informateci.org/proverbia" class="twitter-share-button"><img src="/twitter_s.png" height="50" /></a>
+        </div>
+    </body>
+</html>
