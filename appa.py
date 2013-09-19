@@ -5,8 +5,10 @@ from arnaldo import sproloquio, accendi_il_cervello
 PATH='/home/httpd/arnaldo.informateci.org'
 
 app = Flask(__name__)
+app.config['DEBUG'] = True
+
 import os
-os.chdir('./arnaldo')
+os.chdir(PATH + '/arnaldo')
 accendi_il_cervello()
 os.chdir(PATH)
 
