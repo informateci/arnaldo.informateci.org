@@ -1,26 +1,8 @@
-<html style="margin: 0; padding: 0">
-    <head>
-        <title>Arnaldo - Proverbia</title>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script type="text/javascript" src="/ZeroClipboard.js">
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#container').height(window.innerHeight);
-                $('#divproverbio').height(window.innerHeight);
-                $(window).resize(function () {
-                    $('#container').height(window.innerHeight);
-                    $('#divproverbio').height(window.innerHeight);
-                });
-                /* var clip = new ZeroClipboard($('#copy'), {
-                    moviePath: '/arnaldo/ZeroClipboard.swf'
-                }); */
-            });
-        </script>
-        <style type="text/css">
+{% extends "base.html" %}
+{% block css %}
             @font-face {
                 font-family: northumbria;
-                src: url('DK Northumbria.otf');
+                src: url('/static/DK Northumbria.otf');
             }
 
             html, body {
@@ -39,6 +21,8 @@
             #divproverbio {
                 display: table;
                 width: 100%;
+                font-size: 50px;
+                font-family: northumbria;
             }
 
             #pproverbio {
@@ -53,29 +37,6 @@
                 margin-top: -90px;
             }
 
-
-            #newproverbio a:visited,
-            #newproverbio a {
-                font-family: sans-serif;
-                font-size: 17px;
-                padding: 10px;
-                -webkit-border-radius: 5px;
-                -moz-border-radius: 5px;
-                border-radius: 5px;
-                border: 1px solid #6666cc;
-                color: #000;
-                text-decoration: none;
-            }
-
-            #newproverbio a:visited,
-            #newproverbio a {
-                background: rgb(132, 191, 213);
-            }
-
-            #newproverbio a:hover {
-                background: rgb(152, 211, 233);
-            }
-
             #facebook-share {
                 position: absolute;
                 top: 50px;
@@ -87,17 +48,40 @@
                 top: 50px;
                 right: 70px;
             }
-        </style>
-    </head>
-    <body>
-        <div id="container">
+{% endblock %}
+
+
+{% block js %}
+        <script type="text/javascript" src="/static/ZeroClipboard.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#container').height(window.innerHeight);
+                $('#divproverbio').height(window.innerHeight);
+                $(window).resize(function () {
+                    $('#container').height(window.innerHeight);
+                    $('#divproverbio').height(window.innerHeight);
+                });
+                /* var clip = new ZeroClipboard($('#copy'), {
+                    moviePath: '/arnaldo/ZeroClipboard.swf'
+                }); */
+            });
+        </script>
+{% endblock %}
+
+
+{% block corpo %}
             <div id="divproverbio">
                 <p id="pproverbio">{{proverbio}}</p>
             </div>
             
             <div id="newproverbio">
-                <a href="/proverbia">Nuovo proverbio</a><a style="margin-left: 50px" href="/proverbia?id={{id}}">Permalink</a>
+                {% if ricarica is defined %}
+                    <a class="btn btn-primary btn-lg" href="/{{ricarica}}">Rigenera</a>
+                {% else %}
+                    <a class="btn btn-primary btn-lg" href="/proverbia">Nuovo proverbio</a><a class="btn btn-primary btn-lg" style="margin-left: 50px" href="/proverbia?id={{id}}">Permalink</a>
+                {% endif %}
             </div>
+            {% if ricarica is not defined %}
             <!--button id="copy" style="border: 1px solid #25649F; position:absolute; display: inline; font-size: 20px; height: 30px; line-height: 30px; vertical-align: middle; top: 70px; left: 70px; cursor: pointer" data-clipboard-text="{{proverbio}}">Copy</button-->
             <a href="#" id="facebook-share" onclick="
                 window.open(
@@ -106,14 +90,16 @@
                     'facebook-share-dialog', 
                     'width=626,height=436'); 
                     return false;">
-                <img src="/facebook_s.png" height="50" />
+                <img src="/static/facebook_s.png" height="50" />
             </a>
             <a id="twitter-share" href="https://twitter.com/intent/tweet?text={{proverbio}}&url=http://arnaldo.informateci.org/proverbia?id={{id}}">
-                <img src="/twitter_s.png" height="50" />
+                <img src="/static/twitter_s.png" height="50" />
             </a>
             <!--p style="position:absolute; bottom: 50px; right: 70px; font-size: 15px; display: inline; line-height: 20px; font-family: sans-serif">
                 {{users}} visitor(s) in the last 10 minutes
             </p-->
-        </div>
-    </body>
-</html>
+            {% endif %}
+{% endblock %}
+
+
+
