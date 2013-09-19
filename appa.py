@@ -1,15 +1,7 @@
 from flask import Flask, redirect, render_template, url_for, send_from_directory, request
-from arnaldo import TestBot
+from arnaldo import sproloquio
 
 app = Flask(__name__)
-
-try:
-    arna = TestBot('','','')
-except Exception:
-    arna = None
-
-#arnaldo = None
-
 
 #count_proverbia = []
 #def contaggio(arg):
@@ -26,8 +18,6 @@ def proverbia():
     import sqlite3
     conn = sqlite3.connect('/home/httpd/arnaldo/database.db')
     c = conn.cursor()
-    if arna == None:
-        return "None"
     if request.method == 'GET':
         ip = str(request.remote_addr)
         #if ip not in count_proverbia:
@@ -39,7 +29,7 @@ def proverbia():
             conn.close()
             return render_template("proverbia.html", proverbio = p, users = "0", id = str(i[0]))
         except Exception as e:
-            p = arna.saggezza()
+            p = sproloquio.saggezza()
             try:
                 c.execute("INSERT INTO proverbia(proverbio) VALUES (?)", (p.replace('\'','\\\''),))
                 conn.commit()
@@ -60,19 +50,19 @@ def proverbia():
 def boobs():
     if arna == None:
         return "None"
-    return render_template("boobsplease.html", link = arna.bombe('',''))
+    return render_template("boobsplease.html", link = sproloquio.boobs())
 
 @app.route("/attardati")
 def attardati():
     if arna == None:
         return "None"
-    return render_template("proverbia.html", proverbio = arna.attardati('',''))
+    return render_template("proverbia.html", proverbio = sproloquio.attardati())
 
 @app.route("/ANAL")
 def ANAL():
     if arna == None:
         return "None"
-    return render_template("proverbia.html", proverbio = arna.ANAL())
+    return render_template("proverbia.html", proverbio = sproloquio.ANAL())
 
 @app.route("/<filename>")
 def arnafile(filename):
