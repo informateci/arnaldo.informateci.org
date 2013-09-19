@@ -1,0 +1,3 @@
+[submodule "arnaldo"]
+	path = arnaldo
+	url = https://github.com/informateci/arnaldo
