@@ -5,25 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'>
+
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
 
     <style  type="text/css">
         body {
-            padding-top: 50px;
+            padding-top: 70px;
         }
-        .nelmezzo {
-            padding: 40px 15px;
-            text-align: center;
+        .quindicittop {
+            padding-top: 10%;
         }
         {% block css %}
         {% endblock %}
+        .navbar { 
+            font-family: 'Montserrat Alternates', sans-serif;
+        }
     </style>
   </head>
   <body>
 
-
+    <div class="container">
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -43,19 +48,28 @@
             <li><a href="/anal">ANAL</a></li>
             <li><a href="/attardati">Attardi</a></li>
           </ul>
+         <div class="container pull-right">
+         </div>
+
         </div><!--/.nav-collapse -->
+
+
+
+
+
       </div>
+
+
     </div>
 
-    <div class="container">
 
-      <div class="nelmezzo">
+    <div class="container quindicittop">
         {% block corpo %}
             <h1></h1>
             <p class="lead">Qui ci va il faccione di Arnaldo</p>
         {% endblock %}
 
-      </div>
+    </div>
 
     </div><!-- /.container -->
 

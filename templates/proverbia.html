@@ -1,104 +1,60 @@
 {% extends "base.html" %}
 {% block css %}
-            @font-face {
-                font-family: northumbria;
-                src: url('/static/DK Northumbria.otf');
-            }
-
-            html, body {
-                margin: 0;
-                padding: 0;
-            }
-
-            #container {
-                background: #beccd1;
-                text-align: center;
-                margin: auto;
-                font-size: 50px;
-                font-family: northumbria;
-            }
-
             #divproverbio {
-                display: table;
-                width: 100%;
-                font-size: 50px;
-                font-family: northumbria;
+               margin-bottom: 60px;
             }
 
             #pproverbio {
-                display: table-cell;
-                vertical-align: middle;
-                text-align: center;
-                margin-left: 70px;
-                margin-right: 70px;
+                font-size: 50px;
+                font-family: 'Cutive Mono', serif;
+
             }
 
-            #newproverbio {
-                margin-top: -90px;
-            }
 
-            #facebook-share {
-                position: absolute;
-                top: 50px;
-                right: 125px;
-            }
-
-            #twitter-share {
-                position: absolute;
-                top: 50px;
-                right: 70px;
-            }
 {% endblock %}
 
 
 {% block js %}
         <script type="text/javascript" src="/static/ZeroClipboard.js"></script>
         <script type="text/javascript">
-            $(document).ready(function() {
-                $('#container').height(window.innerHeight);
-                $('#divproverbio').height(window.innerHeight);
-                $(window).resize(function () {
-                    $('#container').height(window.innerHeight);
-                    $('#divproverbio').height(window.innerHeight);
-                });
-                /* var clip = new ZeroClipboard($('#copy'), {
-                    moviePath: '/arnaldo/ZeroClipboard.swf'
-                }); */
+           $('[data-provide="fbcazzy"]').on('click', function(e) {
+                                window.open(
+                            'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=' + encodeURIComponent('http://arnaldo.informateci.org/proverbia?id={{id}}')
+                            + '&p[title]=Arnaldo&p[summary]=' + encodeURIComponent('{{proverbio}}'), 
+                            'facebook-share-dialog', 
+                            'width=626,height=436'); 
+                            return false;">
             });
         </script>
 {% endblock %}
 
 
 {% block corpo %}
-            <div id="divproverbio">
-                <p id="pproverbio">{{proverbio}}</p>
-            </div>
             
-            <div id="newproverbio">
+                <div id="divproverbio" class="row">
+                  <div class="col-md-1"></div>
+                  <div class="col-md-10"><p id="pproverbio">{{proverbio}}</p></div>
+                  <div class="col-md-1"></div>
+                </div>
+
+
                 {% if ricarica is defined %}
-                    <a class="btn btn-primary btn-lg" href="/{{ricarica}}">Rigenera</a>
+                <div class="row">
+                  <div class="col-md-1"></div><div class="col-md-3"><a class="btn btn-primary btn-lg" href="/{{ricarica}}">Rigenera</a></div><div class="col-md-8"></div>
+                </div>
+                   
                 {% else %}
-                    <a class="btn btn-primary btn-lg" href="/proverbia">Nuovo proverbio</a><a class="btn btn-primary btn-lg" style="margin-left: 50px" href="/proverbia?id={{id}}">Permalink</a>
+                <div class="row">
+                  <div class="col-md-1"></div>
+                  <div class="col-md-3"><a class="btn btn-primary btn-lg btn-block" href="/proverbia">Nuovo proverbio</a></div>
+                  <div class="col-md-3"><a class="btn btn-primary btn-lg btn-block" href="/proverbia?id={{id}}">Permalink</a></div>
+                  <div class="col-md-1"><a href="#" id="facebook-share" data-provide="fbcazzy"><img src="/static/facebook_s.png" height="50" /></a></div>
+                  <div class="col-md-1"><a id="twitter-share" href="https://twitter.com/intent/tweet?text={{proverbio}}&url=http://arnaldo.informateci.org/proverbia?id={{id}}"><img src="/static/twitter_s.png" height="50" /></a></div>
+                  <div class="col-md-3"></div>
+                </div>
                 {% endif %}
-            </div>
-            {% if ricarica is not defined %}
-            <!--button id="copy" style="border: 1px solid #25649F; position:absolute; display: inline; font-size: 20px; height: 30px; line-height: 30px; vertical-align: middle; top: 70px; left: 70px; cursor: pointer" data-clipboard-text="{{proverbio}}">Copy</button-->
-            <a href="#" id="facebook-share" onclick="
-                window.open(
-                    'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=' + encodeURIComponent('http://arnaldo.informateci.org/proverbia?id={{id}}')
-                    + '&p[title]=Arnaldo&p[summary]=' + encodeURIComponent('{{proverbio}}'), 
-                    'facebook-share-dialog', 
-                    'width=626,height=436'); 
-                    return false;">
-                <img src="/static/facebook_s.png" height="50" />
-            </a>
-            <a id="twitter-share" href="https://twitter.com/intent/tweet?text={{proverbio}}&url=http://arnaldo.informateci.org/proverbia?id={{id}}">
-                <img src="/static/twitter_s.png" height="50" />
-            </a>
-            <!--p style="position:absolute; bottom: 50px; right: 70px; font-size: 15px; display: inline; line-height: 20px; font-family: sans-serif">
-                {{users}} visitor(s) in the last 10 minutes
-            </p-->
-            {% endif %}
+
+
 {% endblock %}
 
 

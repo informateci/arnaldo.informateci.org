@@ -1,4 +1,19 @@
 {% extends "base.html" %}
+{% block css %}
+#bolas
+    {
+
+      display:table-cell;
+      horizzontal-align:middle;
+      margin:auto;
+      margin-bottom: 20px;
+    }
+{% endblock %}
 {% block corpo %}
-    <img src="{{link}}" style="max-height: 600px" />
+  <div class="row">
+      <div class="span12"> <img id="bolas" class="img-thumbnail img-responsive" src="{{link}}" style="max-height: 600px" /> </div>
+  </div>
+  <div class="row">
+      <div class="col-md-3"></div><div class="col-md-3"><a class="btn btn-primary btn-lg" href="/boobs">Ridagli</a></div><div class="col-md-3"></div><div class="col-md-3"></div>
+  </div>
 {% endblock %}
