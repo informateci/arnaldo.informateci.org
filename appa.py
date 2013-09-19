@@ -16,7 +16,7 @@ app = Flask(__name__)
 @app.route("/proverbia")
 def proverbia():
     import sqlite3
-    conn = sqlite3.connect('/home/httpd/arnaldo/database.db')
+    conn = sqlite3.connect('/home/httpd/arnaldo.informateci.org/database.db')
     c = conn.cursor()
     if request.method == 'GET':
         ip = str(request.remote_addr)
@@ -29,16 +29,16 @@ def proverbia():
             conn.close()
             return render_template("proverbia.html", proverbio = p, users = "0", id = str(i[0]))
         except Exception as e:
-            p = sproloquio.saggezza()
             try:
+                p = sproloquio.proverbia()
                 c.execute("INSERT INTO proverbia(proverbio) VALUES (?)", (p.replace('\'','\\\''),))
                 conn.commit()
                 conn.close()
                 i = c.lastrowid
                 import urllib
-                return render_template("proverbia.html", proverbio = p, id = str(i), urlprov = urllib.quote(p.encode('utf8')), users = "0")
+                return render_template("proverbia.html", proverbio = p, id = str(i), users = "0")
             except Exception as e:
-                return str(e) + ' ' + p
+                return str(e.args) + '<br/>'+str(e) + ' ' + p
             #i = c.lastrowid
             #conn.commit()
             #return str(i)
@@ -66,7 +66,7 @@ def ANAL():
 
 @app.route("/<filename>")
 def arnafile(filename):
-    return send_from_directory('/home/httpd/arnaldo/resources', filename)
+    return send_from_directory('/home/httpd/arnaldo.informateci.org/resources', filename)
 
 if __name__ == "__main__":
     app.run()
