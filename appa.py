@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from flask import Flask, redirect, render_template, url_for, send_from_directory, request
 from arnaldo import sproloquio, accendi_il_cervello
-PATH='/home/autoscatto/prototipi/git/arnaldo.informateci.org'
+PATH='/home/httpd/arnaldo.informateci.org'
 
 app = Flask(__name__)
 
