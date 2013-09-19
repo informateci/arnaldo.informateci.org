@@ -1,7 +1,9 @@
 from flask import Flask, redirect, render_template, url_for, send_from_directory, request
-from arnaldo import sproloquio
+from arnaldo import sproloquio, accendi_il_cervello
+#from motorino_d_avviamento import accendi_il_cervello
 
 app = Flask(__name__)
+accendi_il_cervello()
 
 #count_proverbia = []
 #def contaggio(arg):
@@ -54,14 +56,10 @@ def boobs():
 
 @app.route("/attardati")
 def attardati():
-    if arna == None:
-        return "None"
     return render_template("proverbia.html", proverbio = sproloquio.attardati())
 
 @app.route("/ANAL")
 def ANAL():
-    if arna == None:
-        return "None"
     return render_template("proverbia.html", proverbio = sproloquio.ANAL())
 
 @app.route("/<filename>")
