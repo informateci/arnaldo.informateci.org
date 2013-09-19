@@ -2,14 +2,24 @@
 {% block css %}
             #divproverbio {
                margin-bottom: 60px;
+               width: 100%;
+               height: 100%;
+               display: table;
+            }
+
+            body, html {
+               height: 100%;
+               margin: 0;
+               padding: 0;
             }
 
             #pproverbio {
                 font-size: 50px;
                 font-family: 'Cutive Mono', serif;
-
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
             }
-
 
 {% endblock %}
 
@@ -31,10 +41,10 @@
 
 {% block corpo %}
             
-                <div id="divproverbio" class="row">
-                  <div class="col-md-1"></div>
-                  <div class="col-md-10"><p id="pproverbio">{{proverbio}}</p></div>
-                  <div class="col-md-1"></div>
+                <div id="divproverbio">
+                  <!--div class="col-md-1"></div-->
+                  <p id="pproverbio">{{proverbio}}</p>
+                  <!--div class="col-md-1"></div-->
                 </div>
 
 
@@ -44,12 +54,15 @@
                 </div>
                    
                 {% else %}
-                <div class="row">
-                  <div class="col-md-1"></div>
-                  <div class="col-md-3"><a class="btn btn-primary btn-lg btn-block" href="/proverbia">Nuovo proverbio</a></div>
-                  <div class="col-md-3"><a class="btn btn-primary btn-lg btn-block" href="/proverbia?id={{id}}">Permalink</a></div>
-                  <div class="col-md-1"><a href="#" id="facebook-share" data-provide="fbcazzy"><img src="/static/facebook_s.png" height="50" /></a></div>
-                  <div class="col-md-1"><a id="twitter-share" href="https://twitter.com/intent/tweet?text={{proverbio}}&url=http://arnaldo.informateci.org/proverbia?id={{id}}"><img src="/static/twitter_s.png" height="50" /></a></div>
+                <div style="margin-left: 50px; margin-right:50px; margin-bottom: 70px" class="row">
+                  <div style="float: left">
+                       <a class="btn btn-primary btn-lg" style="width: 160px;" href="/proverbia">Nuovo proverbio</a>
+                       <a class="btn btn-primary btn-lg" style="width: 160px" href="/proverbia?id={{id}}">Permalink</a>
+                  </div>
+                  <div style="float: right;">
+                      <a href="#" id="facebook-share" data-provide="fbcazzy"><img src="/static/facebook_s.png" height="50" /></a>
+                      <a id="twitter-share" href="https://twitter.com/intent/tweet?text={{proverbio}}&url=http://arnaldo.informateci.org/proverbia?id={{id}}"><img src="/static/twitter_s.png" height="50" /></a>
+                  </div>
                   <div class="col-md-3"></div>
                 </div>
                 {% endif %}
