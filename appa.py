@@ -3,7 +3,10 @@ from arnaldo import sproloquio, accendi_il_cervello
 #from motorino_d_avviamento import accendi_il_cervello
 
 app = Flask(__name__)
+import os
+os.chdir('/home/httpd/arnaldo.informateci.org/arnaldo')
 accendi_il_cervello()
+os.chdir('/home/httpd/arnaldo.informateci.org')
 
 #count_proverbia = []
 #def contaggio(arg):
