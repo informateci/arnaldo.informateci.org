@@ -1,0 +1,2 @@
+def smazza():
+    print "SMAZZO"
