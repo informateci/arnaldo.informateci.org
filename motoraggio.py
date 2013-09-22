@@ -1,2 +1,2 @@
 def smazza():
-    print "SMAZZO"
+    print "SMAZZO2"
